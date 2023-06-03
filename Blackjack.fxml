@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BlackjackController">
+   <children>
+      <AnchorPane fx:id="MainMenu" layoutX="64.0" layoutY="101.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="222.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blackjack">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Text>
+            <Button fx:id="PlayButton" layoutX="245.0" layoutY="141.0" maxWidth="194.0" minWidth="50.0" mnemonicParsing="false" onAction="#PlayButtonPressed" prefHeight="59.0" prefWidth="119.0" text="Play">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="GuideButton" layoutX="245.0" layoutY="207.0" maxWidth="119.0" minWidth="50.0" mnemonicParsing="false" onAction="#GuideButtonPressed" prefHeight="59.0" prefWidth="119.0" text="Guide">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="GameScreen" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane layoutX="230.0" layoutY="351.0" prefHeight="35.0" prefWidth="141.0" AnchorPane.bottomAnchor="14.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="HitButton" minWidth="52.0" mnemonicParsing="false" onAction="#HitButtonPressed" text="Hit" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="StandButton" minWidth="52.0" mnemonicParsing="false" onAction="#StandButtonPressed" text="Stand" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="167.0" layoutY="237.0" maxWidth="427.0" prefHeight="90.0" prefWidth="267.0">
+              <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="CardZero" fitHeight="119.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="CardOne" fitHeight="102.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <ImageView fx:id="CardTwo" fitHeight="102.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <ImageView fx:id="CardThree" fitHeight="150.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <ImageView fx:id="CardFour" fitHeight="150.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <ImageView fx:id="CardFive" fitHeight="150.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <ImageView fx:id="CardSix" fitHeight="95.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Label fx:id="HandValueLabel" layoutX="14.0" layoutY="14.0" text="Hand value: 0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="212.0" text="Your Hand:" />
+            <Label fx:id="DealerValueLabel" layoutX="14.0" layoutY="35.0" text="Dealer Hand Value:" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
