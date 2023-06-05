@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane prefHeight="494.0" prefWidth="344.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -37,22 +36,22 @@
                      <children>
                         <ScrollPane layoutX="-89.0" prefHeight="268.0" prefWidth="433.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="327.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="327.0">
                                  <children>
-                                    <Text layoutX="13.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When the game begins, you are dealt two cards face up. The dealer also receives two cards - one of them face up, the other face down. Work out the value of your hand, as well as that of the dealer, to get as close as possible to 21 without going bust." wrappingWidth="301.05078125" />
+                                    <Text layoutX="13.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When the game begins, you are dealt two cards face up. The dealer also receives two cards - one of them face up, the other face down. Work out the value of your hand, as well as that of the dealer, to get as close as possible to 21 without going bust (going over a hand value of 21)." wrappingWidth="301.05078125" />
                                     <Label alignment="CENTER" layoutX="13.0" layoutY="32.0" prefHeight="47.0" prefWidth="289.0" text="Basics" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                     </Label>
-                                    <Text layoutX="13.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ask the dealer for another card. Do this when, based on the current value of your cards, either you're sure that the next card won’t cause you going bust, or you're willing to run the risk of the dealer getting a better hand." wrappingWidth="301.05078125" />
-                                    <Text layoutX="13.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ask the dealer to move on to the next player and deal you no more cards. You'll probably do this when the value of your cards is quite high already (e.g. over 17), and you're can't be sure whether the dealer's hand will beat yours." wrappingWidth="301.05078125" />
-                                    <Text layoutX="13.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standing" wrappingWidth="301.05078125">
+                                    <Text layoutX="13.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ask the dealer for another card. Do this when, based on the current value of your cards, either you're sure that the next card won’t cause you going bust, or you're willing to run the risk of the dealer getting a better hand." wrappingWidth="301.05078125" />
+                                    <Text layoutX="13.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ask the dealer to move on to the next player and deal you no more cards. You'll probably do this when the value of your cards is quite high already (e.g. over 17), and you're can't be sure whether the dealer's hand will beat yours." wrappingWidth="301.05078125" />
+                                    <Text layoutX="13.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standing" wrappingWidth="301.05078125">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Text>
-                                    <Text layoutX="13.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hitting" wrappingWidth="301.05078125">
+                                    <Text layoutX="13.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hitting" wrappingWidth="301.05078125">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

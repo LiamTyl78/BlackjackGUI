@@ -43,107 +43,126 @@ public class BlackjackController {
     private int PlayerHand;
     private int DealerHand;
     private boolean initilized = false;
-    private boolean playing = true;
+    private boolean playing = false;
     private Deck deck = new Deck();
+    private int timesWon = 0;
+    private int timesLost = 0;
 
     @FXML
     void GuideButtonPressed(ActionEvent event) {
         BlackjackGUI.ShowGuide();
     }
-    
+
     @FXML
     void PlayButtonPressed(ActionEvent event) {
         GameScreen();
-        deck.Shuffle();
-        Deal(1); 
-        DealerValueLabel.setText("Dealer face up card is a " + current_cards.get(current_cards.size() - 1).toString() + ".");
-        Deal(1);
-        //System.out.println(current_cards);
-        DealerHand = CardSum();
-        current_cards.clear();
-        Deal(0); 
-        Deal(0);
-        HandValueLabel.setText("Hand value: " + CardSum());
-        
+        //deck.Shuffle();
+        //Deal(1);
+        //DealerValueLabel
+        //        .setText("Dealer face up card is a " + current_cards.get(current_cards.size() - 1).toString() + ".");
+        //Deal(1);
+        // System.out.println(current_cards);
+        //DealerHand = CardSum();
+        //current_cards.clear();
+        //Deal(0);
+        //Deal(0);
+        //HandValueLabel.setText("Hand value: " + CardSum());
+        timesLost = 0;
+        timesWon = 0;
+        playagain();
+
     }
-    
+
     @FXML
     void HitButtonPressed(ActionEvent event) {
         if (playing) {
-            if(CardSum() < 21){
+            if (CardSum() < 21) {
                 Deal(0);
+                PlayerHand = CardSum();
                 HandValueLabel.setText("Hand value: " + CardSum());
             }
-            if(CardSum() > 21){
+            if (CardSum() > 21) {
+                timesLost++;
                 BlackjackGUI.Alert("Game Over", "You Busted!", null);
                 playing = false;
-                if(BlackjackGUI.playagainprompt() == 1){
-                    playagain();
-                }
+                //if (BlackjackGUI.playagainprompt() == 1) {
+                //    playagain();
+                //}
             }
-            if(CardSum() == 21){
-                BlackjackGUI.Alert("You Won!", "You got blackjack!", null);
+            if (CardSum() == 21) {
+                timesWon++;
+                BlackjackGUI.Alert("You Won!", "You got 21!", null);
                 playing = false;
-                if(BlackjackGUI.playagainprompt() == 1){
+            }
+            if (CardSum() >= 21){
+                if (BlackjackGUI.playagainprompt(timesWon,timesLost) == 1) {
                     playagain();
                 }
+                else{
+                    GameScreen();
+                }
             }
-        }
-        else{
-            
+            System.out.println(PlayerHand + " " + CardSum());
         }
     }
-    
+
     @FXML
     void StandButtonPressed(ActionEvent event) {
-        if(playing){
+        if (playing) {
             PlayerHand = CardSum();
             playing = false;
             current_cards.clear();
-            //System.out.println(DealerHand);
+            // System.out.println(DealerHand);
             while (DealerHand < 17) {
                 Deal(1);
                 DealerHand = DealerHand + current_cards.get(current_cards.size() - 1).GetValue();
-                //System.out.println(DealerHand);
+                // System.out.println(current_cards.get(current_cards.size() - 1).toString());
+                // System.out.println(DealerHand);
                 DealerValueLabel.setText("Dealer Hand Value: " + DealerHand);
             }
-            //System.out.println(current_cards);
-            if(DealerHand == 21){
-                BlackjackGUI.Alert("You Lost!", "You Lost! Dealer got blackjack! ", null);
-            }
-            else if(PlayerHand > DealerHand){
+            // System.out.println(current_cards);
+            if (DealerHand == 21) {
+                timesLost++;
+                BlackjackGUI.Alert("You Lost!", "You Lost! Dealer got 21! ", null);
+            } else if (PlayerHand > DealerHand) {
+                timesWon++;
                 BlackjackGUI.Alert("You Won!", "You Won! You got a hand value of: " + PlayerHand + " while the dealer had a hand value of " + DealerHand, null);
-            }
-            else if(DealerHand > 21){
-                BlackjackGUI.Alert("You Won!", "You Won! The dealer busted and you didnt.",null);
-            }
-            else if(PlayerHand < DealerHand){
-                BlackjackGUI.Alert("You Lost!", "You Lost! You got a hand value of: " + PlayerHand + " while the dealer had a hand value of: " + DealerHand, null);
-            }
-            else if(PlayerHand == DealerHand){
+            } else if (DealerHand > 21) {
+                timesWon++;
+                BlackjackGUI.Alert("You Won!", "You Won! The dealer busted and you didnt.", null);
+            } else if (PlayerHand < DealerHand) {
+                timesLost++;
+                BlackjackGUI.Alert("You Lost!", "You Lost! You got a hand value of: " + PlayerHand
+                        + " while the dealer had a hand value of: " + DealerHand, null);
+            } else if (PlayerHand == DealerHand) {
                 BlackjackGUI.Alert(null, "You and the dealer both tied at: " + DealerHand, null);
             }
-            if(BlackjackGUI.playagainprompt() == 1){
+            if (BlackjackGUI.playagainprompt(timesWon,timesLost) == 1) {
                 playagain();
             }
-            
+            else{
+                GameScreen();
+            }
         }
     }
-    
-    //----------------------------------------------------------------------------------------------------
-    
+
+    // ----------------------------------------------------------------------------------------------------
+
     private void GameScreen() {
-        if(MainMenu.isVisible()){
+        if (MainMenu.isVisible()) {
             MainMenu.setVisible(false);
             GameScreen.setVisible(true);
         }
+        else{
+            MainMenu.setVisible(true);
+            GameScreen.setVisible(false);
+        }
     }
+
     public void Deal(int mode) {
         current_cards.add(deck.DealCard());
-        // System.out.println(initilized);
-        // System.out.println(CardNum);
-        if(mode == 0){
-            if(initilized == false){
+        if (mode == 0) {
+            if (!initilized) {
                 PlayerCards.add(CardZero);
                 PlayerCards.add(CardOne);
                 PlayerCards.add(CardTwo);
@@ -152,17 +171,15 @@ public class BlackjackController {
                 PlayerCards.add(CardFive);
                 PlayerCards.add(CardSix);
                 initilized = true;
-                // System.out.println(PlayerCards);
             }
             try {
-                BlackjackGUI.cardskin(current_cards.get(current_cards.size() - 1),PlayerCards.get(CardNum));   
+                BlackjackGUI.cardskin(current_cards.get(current_cards.size() - 1), PlayerCards.get(CardNum));
             } catch (Exception e) {
                 BlackjackGUI.error(e);
             }
             CardNum++;
         }
     }
-
 
     public int CardSum() {
         int sum = 0;
@@ -171,12 +188,18 @@ public class BlackjackController {
             if (added_val >= 11) {
                 added_val = 10;
             }
+            //System.out.println(playing);
+            if (PlayerHand <= 10 && added_val == 1 && playing == true){
+                added_val = 11;
+                
+            }
             sum += added_val;
         }
         return sum;
     }
 
-    public void playagain(){
+    public void playagain() {
+        //System.out.println("_______________________________________");
         initilized = false;
         current_cards.clear();
         for (ImageView imageView : PlayerCards) {
@@ -184,17 +207,30 @@ public class BlackjackController {
         }
         CardNum = 0;
         deck.Shuffle();
-        Deal(1); 
+        Deal(1);
         DealerValueLabel.setText("Dealer face up card is a " + current_cards.get(current_cards.size() - 1).toString() + ".");
         Deal(1);
         DealerHand = CardSum();
         current_cards.clear();
-        //System.out.println(current_cards);
-        System.out.println(DealerHand);
-        Deal(0); 
-        Deal(0);
-        HandValueLabel.setText("Hand value: " + CardSum());
+        // System.out.println(current_cards);
         playing = true;
+        Deal(0);
+        PlayerHand = CardSum();
+        Deal(0);
+        PlayerHand = CardSum();
+        HandValueLabel.setText("Hand value: " + PlayerHand);
+        if(PlayerHand == 21){
+            timesWon++;
+            BlackjackGUI.Alert("You Won!", "You got BLACKJACK!!", null);
+            playing = false;
+            if (BlackjackGUI.playagainprompt(timesWon,timesLost) == 1) {
+                playagain();
+            }
+            else{
+                GameScreen();
+            }
+        }
+        
     }
 
 }
